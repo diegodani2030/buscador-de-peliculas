@@ -32,7 +32,7 @@ async function buscar (){
           <input
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value )}
-          placeholder="Escribir un show de telesición"
+          placeholder="Escribir un show de televisición"
           />
           <button onClick={buscar}>Busqueda</button>
           </div>
