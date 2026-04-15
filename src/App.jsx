@@ -7,14 +7,16 @@ function App (){
   const [busqueda, setBusqueda] = useState ("")
   const [resultados, setResultados] = useState ([])
   const [cargando, setCargando] = useState (false)
+  const [buscado, setBuscado] = useState(false)
   const navegar = useNavigate()
 
 async function buscar (){
   setCargando(true)
+  setBuscado(true)
   const respuesta = await fetch(`https://api.tvmaze.com/search/shows?q=${busqueda}`)
   const datos = await respuesta.json()
   setResultados(datos)
-  setCargando(false && resultados.length == 0)
+  setCargando(false)
 }
   
   return(
@@ -24,7 +26,7 @@ async function buscar (){
           <h1>Pelicula</h1>
           {cargando &&
           <p className="buscando">Buscando...</p>}
-          {!cargando && resultados.length === 0 && 
+          {!cargando && buscado && resultados.length === 0 && 
           <p className="sin-resultados">No se encontraron resultados</p>}
           <div className="buscador">
           <input
